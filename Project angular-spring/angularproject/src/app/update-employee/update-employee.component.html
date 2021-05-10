@@ -1,0 +1,37 @@
+<body>
+    <div class="col-md-6 offset-md-3">
+        <h3> Edit Employee </h3>
+        <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+
+            <div class="form-group">
+                <label> First Name</label>
+                <input type="text" class="form-control" id="firstName" [(ngModel)]="employee.firstName" name="firstName" #name="ngModel" [class.is-invalid]="name.invalid && name.touched"  class="form-control" required required minlength="8">
+                <small class="text-danger" [class.d-none]="name.untouched || name.valid">This is a required field...</small>
+                <div *ngIf="name.errors.minlength" style="color: crimson;">
+                    First Name must be at least 8 characters long
+                  </div>
+            </div>
+
+            <div class="form-group">
+                <label> Last Name</label>
+                <input type="text" class="form-control" id="lastName" [(ngModel)]="employee.lastName" name="lastName" #name="ngModel" [class.is-invalid]="name.invalid && name.touched"  class="form-control" required required minlength="8">
+                <small class="text-danger" [class.d-none]="name.untouched || name.valid">This is a required field...</small>
+                <div *ngIf="name.errors.minlength" style="color: crimson;">
+                    last Name must be at least 8 characters long
+                  </div>
+            </div>
+
+            <div class="form-group">
+                <label> Email Id</label>
+                <input type="text" class="form-control" id="emailId" [(ngModel)]="employee.emailId" name="emailId" #name="ngModel" [class.is-invalid]="name.invalid && name.touched"  class="form-control" required required minlength="8">
+                <small class="text-danger" [class.d-none]="name.untouched || name.valid">This is a required field...</small>
+                <div *ngIf="name.errors.minlength" style="color: crimson;">
+                    Email Id must be a valid emailId...
+                  </div>
+            </div>
+
+            <button class="btn btn-success" type="submit">Submit</button>
+
+        </form>
+    </div>
+</body>

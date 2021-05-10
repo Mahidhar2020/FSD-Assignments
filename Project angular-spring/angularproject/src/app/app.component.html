@@ -1,0 +1,24 @@
+<body>
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+  <ul class = "navbar-nav">
+      <li class = "nav-item">
+       <button>  <a routerLink="employees" routerLinkActive="active" class="nav-link" style="color:chocolate" >NESS Employee List</a> </button> 
+      </li>
+      <li class = "nav-item">
+        <button> <a routerLink="create-employee" routerLinkActive="active" class="nav-link" style="color:darkmagenta">Add Employee</a> </button> 
+      </li>
+  </ul>
+</nav>
+
+<h1 class="text-center" style="color: darkgreen;"> NESS EMPLOYEES </h1>
+<div class = "container">
+  <router-outlet></router-outlet>
+  
+</div>
+
+<footer class = "footer">
+  <div class = "container">
+      <span>Thank You!!! Visit Again</span>
+  </div>
+</footer>
+</body>
