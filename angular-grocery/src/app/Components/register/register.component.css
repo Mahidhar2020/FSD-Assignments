@@ -1,0 +1,31 @@
+.invalid-input {
+  color: red;
+}
+.login{
+  background-image:  url(/assets/img/register.jpg);
+  
+}
+.row{
+  margin-top: 15px;
+}
+.card-body{
+  border-radius: 5px;
+  
+ 
+}
+.form-group{
+  box-shadow: 5px 5px 5px 5px  #505050;
+  border-radius: 5px;
+}
+.btn{
+  align-items: center;
+  background: rgb(0, 94, 0);
+  color: white;
+  font-weight: bold;
+}
+
+.container{
+ margin-left: 300px ;
+ 
+ 
+}
