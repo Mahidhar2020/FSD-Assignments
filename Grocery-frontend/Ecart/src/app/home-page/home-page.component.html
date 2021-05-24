@@ -1,0 +1,293 @@
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<link href="https://fonts.googleapis.com/css?family=Sofia" rel='stylesheet'>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+  integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+
+<header id="scroll">
+  <nav class="navbar navbar-expand-lg navbar-light" style="border-bottom: none; height: 170px;">
+
+    <div class="container">
+
+      <img src="../../assets/img/home1.gif" alt="Ness-essaries">
+
+      <p class="motto"> "Our Fresh Produce Promise" </p>
+
+
+
+    </div>
+    <div class="profile">
+      <ul class="nav navbar-nav pull-sm-right">
+        <li class="nav-item">
+          <a class="nav-link" href="profile" style="color:white">Profile</a>
+        </li>
+        <li class="nav-item" style="cursor: pointer;">
+          <a href="cart" class="btn btn-success btn-sm mx-3 mt-1">
+            <i class="fa fa-shopping-cart"></i> Cart
+            <span class="badge badge-light">{{length}}</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="logout()" style="color:white">LogOut</a>
+        </li>
+        <li class="nav-item" *ngIf="isAdmin()">
+          <a class="nav-link" (click)="addProduct()" style="color:white">AddProduct</a>
+        </li>
+        <!-- <li class="nav-item" *ngIf="isAdmin()">
+                    <a class="nav-link" (click)="editProduct()" style="color:white">EditProduct</a>
+                </li> -->
+        <li class="nav-item">
+          <div class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" style="width: 400px;" type="search" placeholder="Search"
+              aria-label="Search" [(ngModel)]="searchItem">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="search()">Search</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+
+
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <ul class="nav navbar-nav pull-sm-left">
+        <li class="nav-item">
+          <a class="nav-link" (click)="filter('All')" style="color:blue">All</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+        <li class="nav-item">
+          <a class="nav-link" (click)="filter('dairy')" style="color:white">Dairy</a>
+        </li>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <li class="nav-item">
+          <a class="nav-link" (click)="filter('spices')" style="color:white">Spices</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <li class="nav-item">
+          <a class="nav-link" (click)="filter('vegetables')" style="color:white">Vegetables</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <li class="nav-item">
+          <a class="nav-link" (click)="filter('fruits')" style="color:white">Fruits</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <li class="nav-item">
+          <a class="nav-link" (click)="filter('drinks')" style="color:white">Drinks & Beverages</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <li class="nav-item">
+          <a class="nav-link" (click)="filter('utensils')" style="color:white">Utensils</a>
+        </li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <li class="nav-item">
+          <a class="nav-link" (click)="filter('canned')" style="color:white">Canned Foods</a>
+        </li>>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <li class="nav-item">
+          <a class="nav-link" (click)="filter('chocolates')" style="color:white">Chocolates</a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+<div class="container-fluid" style="display: inline-flex;padding-top:10px;padding-left:0px;padding-right:0px; ">
+  <div class="col-sm-3">
+    <div class="card1 col-sm-10 mt-3 ml-2 u bg-light" style="box-shadow: 5px 5px 5px darkgray; height: 100px; "
+      class="card sticky-top">
+
+      <div class="card-body">
+        <h2 class="card-title ml-4"><b>Price Range</b></h2>
+        <hr />
+        <form>
+          <input type="radio" (change)="pricefilters($event,10,200)" name="range"
+            value="0">&nbsp;&nbsp;&nbsp;<b>10-200</b><br /><br />
+          <input type="radio" (change)="pricefilters($event,201,500)" name="range"
+            value="0">&nbsp;&nbsp;&nbsp;<b>201-500</b><br /><br />
+          <input type="radio" (change)="pricefilters($event,501,999)" name="range"
+            value="0">&nbsp;&nbsp;&nbsp;<b>501-999</b><br /><br />
+          <input type="radio" (change)="pricefilters($event,1000,5000)" name="range"
+            value="0">&nbsp;&nbsp;&nbsp;<b>Above 1000</b><br /><br />
+        </form>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-sm-9">
+    <div class="row">
+      <div class="col-md-3 col-sm-2 py-5" *ngFor="let d of result">
+        <div class="product-grid6">
+          <div class="product-image6">
+            <a (click)="details(d.productid)">
+              <img class="pic-1" src="/../../assets/img/{{d.image}}" style="width: 300px; height: 250px;">
+            </a>
+          </div>
+
+          <div class="product-content">
+            <h3 class="title">{{d.productName}}</h3>
+            <h2>{{d.detail}}</h2>
+            <div class="price">Rs. {{d.productPrice}}
+              <span>Rs. {{d.productPrice +15}}</span>
+            </div>
+          </div>
+          <ul class="social">
+            <!-- <li><a data-tip="Quick View" (click)="details(d.productid)"><i class="fa fa-search"></i></a>
+                        </li> -->
+            <li><a (click)="addtocart(d.productid)" data-tip="Add to Cart">
+                <i class="fa fa-shopping-cart"></i></a></li>
+
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<hr>
+
+<footer style="background-color:currentColor">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 footer-column">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <span class="footer-title">Product</span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../products/">Product 1</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../products/">Product 2</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../_helpers/">Prices</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Frequently asked questions</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-4 footer-column">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <span class="footer-title">Company</span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="../test/" >About Us </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">Job postings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="">News and articles</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-4 footer-column">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <span class="footer-title">Contact & Support</span>
+          </li>
+          <li class="nav-item">
+            <span class="nav-link"><i class="fa fa-phone"></i>+91 9398026169 , 9398215774, 7660841863</span>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=""><i class="fa fa-comments"></i>Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=""><i class="fa fa-envelope"></i>Contact us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href=""><i class="fa fa-star"></i>Give feedback</a>
+          </li>
+        </ul>
+      </div>
+</div>
+    <div class="text-center"><i class="fa fa-ellipsis-h"></i></div>
+
+    <div class="row text-center">
+    
+      <div class="col-md-4 box">
+        <ul class="list-inline social-buttons">
+          <li class="list-inline-item">
+            <a href="">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li class="list-inline-item">
+            <a href="">
+              <i class="fa fa-linkedin"></i>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-4 box">
+        <ul class="list-inline quick-links">
+          <li class="list-inline-item">
+            <a href="">Privacy Policy</a>
+          </li>
+          <li class="list-inline-item">
+            <a href="">Terms of Use</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="box1  sticky-top">
+    <a id="button1" href="#popup1"><i class="fa fa-comment fa-3x" style="color: white;"></i></a>
+  </div>
+  
+  <div id="popup1" class="overlay">
+    <div class="popup">
+      <h2>FeedBack</h2>
+      <a class="close" href="#">&times;</a>
+      <div class="content">
+        <div class="container" id=con>
+          <form action="action_page.php">
+        
+            <label for="email">Email</label>
+            <input type="text" id="email" name="email" placeholder="Your Email..">
+        
+            <label for="lname">Please Rate us!</label><br>
+            <div class="rate">
+              <input type="radio" id="star5" name="rate" value="5" />
+              <label for="star5" title="text">5 stars</label>
+              <input type="radio" id="star4" name="rate" value="4" />
+              <label for="star4" title="text">4 stars</label>
+              <input type="radio" id="star3" name="rate" value="3" />
+              <label for="star3" title="text">3 stars</label>
+              <input type="radio" id="star2" name="rate" value="2" />
+              <label for="star2" title="text">2 stars</label>
+              <input type="radio" id="star1" name="rate" value="1" />
+              <label for="star1" title="text">1 star</label>
+            </div>
+            <br><br><br>
+           <label for="subject">Subject</label><br>
+            <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+            <br>
+            <button>
+            <input action="mailto:mahidhulipudi@gmail.com" method="post" enctype="text/plain" type="submit" href="#" value="Submit">
+          </button>
+            </form>
+          </div>
+    </div>
+  </div>
+  
+  </div>
+  
+
+</footer>
+<div class="text-center p-4" style="background-color:skyblue">
+  © 2021 Copyright:
+  <a class="text-reset fw-bold; text-primary">Ness-essaries.com</a>
+</div>
+

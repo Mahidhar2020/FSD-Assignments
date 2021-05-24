@@ -1,0 +1,104 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+      <a class="navbar-brand" style="font-weight: bold; color: blue;" >Ness-essaries</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+              <li class="nav-item">
+                  <a class="nav-link active" style="font-weight: bold;"  aria-current="page" href="../home-page/">Home</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link active" style="font-weight: bold;" href="../order-history/">Your Orders</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" style="font-weight: bold;" href="../test/">About Us</a>
+            </li>
+              <li class="nav-item">
+                  <a class="nav-link active" href="#">LogOut</a>
+              </li>
+             
+          </ul>
+      </div>
+  </div>
+</nav>
+<br><br><br><br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 ">
+      <div class="list-group ">
+        
+        <a href="orderHistory" class="list-group-item list-group-item-action text-black">Previous orders</a>
+        <a class="list-group-item list-group-item-action action  text-dark">Coupons</a>
+
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-12">
+              <h4>Your Profile</h4>
+              <hr>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <form>
+                <div class="form-group row">
+                  <label for="username" class="col-4 col-form-label">User Name*</label>
+                  <div class="col-8">
+                    <input [(ngModel)]="uname" name="result.username" placeholder="Username" class="form-control here"
+                      required="required" type="text" disabled>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="name" class="col-4 col-form-label">First Name</label>
+                  <div class="col-8">
+                    <input id="name" name="name" [(ngModel)]="result.firstname" placeholder="First Name"
+                      class="form-control here" type="text">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="lastname" class="col-4 col-form-label">Last Name</label>
+                  <div class="col-8">
+                    <input id="lastname" name="lastname" [(ngModel)]="this.result.lastname" placeholder="Last Name"
+                      class="form-control here" type="text">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="email" class="col-4 col-form-label">Email*</label>
+                  <div class="col-8">
+                    <input id="email" name="email" placeholder="Email" [(ngModel)]="result.email"
+                      class="form-control here" required="required" type="text">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label for="newpass" class="col-4 col-form-label">New Password</label>
+                  <div class="col-8">
+                    <input id="newpass" name="newpass" placeholder="New Password" [(ngModel)]="result.password"
+                      class="form-control here" type="text">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="offset-4 col-8">
+                    <button name="submit" type="submit" class="btn btn-primary" (click)="updateprofile()">Update My
+                      Profile</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
